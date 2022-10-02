@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.8ce72754.css",
-    "main.js": "/static/js/main.78c86a74.js",
-    "static/js/787.b701888c.chunk.js": "/static/js/787.b701888c.chunk.js",
-    "static/media/profile.jpg": "/static/media/profile.79c2b07c783c292b386a.jpg",
-    "static/media/photoghraf.jpg": "/static/media/photoghraf.80a58f8d22638a955005.jpg",
-    "static/media/react-svgrepo-com.svg": "/static/media/react-svgrepo-com.fdd3331d261ad6d5e1c92448737aa2aa.svg",
-    "static/media/html-svgrepo-com.svg": "/static/media/html-svgrepo-com.4395a089ee4b1338c0e94e212b6dd055.svg",
-    "static/media/css-svgrepo-com.svg": "/static/media/css-svgrepo-com.43e23cbe8867c12ec74e7a444ab2d947.svg",
-    "static/media/redux-svgrepo-com.svg": "/static/media/redux-svgrepo-com.609190d142776d97540d56376fce6a2c.svg",
-    "static/media/node-svgrepo-com.svg": "/static/media/node-svgrepo-com.319ec85437cbf7be8288ab6997ccc1a0.svg",
-    "static/media/gmail-svgrepo-com.svg": "/static/media/gmail-svgrepo-com.7014c106863669faa2e8edf006d26793.svg",
-    "static/media/telegram-svgrepo-com.svg": "/static/media/telegram-svgrepo-com.d35461dc7b20898a0e35a06a860992b1.svg",
-    "static/media/github-svgrepo-com.svg": "/static/media/github-svgrepo-com.c62c8cdb8e7fcf638978864991f97bd4.svg",
-    "static/media/scss2-svgrepo-com.svg": "/static/media/scss2-svgrepo-com.1074d0351e670acb335441f19535b7ca.svg",
-    "static/media/like-svgrepo-com.svg": "/static/media/like-svgrepo-com.336d8a70da89407ebc87e37cc756bf35.svg",
-    "static/media/typescript-svgrepo-com.svg": "/static/media/typescript-svgrepo-com.0862127c02a57f6d39dabe211ae436ab.svg",
-    "index.html": "/index.html",
-    "static/media/js-svgrepo-com.svg": "/static/media/js-svgrepo-com.0dd1cf6c80bb500c655a617006c1148a.svg",
-    "main.8ce72754.css.map": "/static/css/main.8ce72754.css.map",
-    "main.78c86a74.js.map": "/static/js/main.78c86a74.js.map",
-    "787.b701888c.chunk.js.map": "/static/js/787.b701888c.chunk.js.map"
+    "main.css": "/galerey/static/css/main.8ce72754.css",
+    "main.js": "/galerey/static/js/main.10c5bfbb.js",
+    "static/js/787.b701888c.chunk.js": "/galerey/static/js/787.b701888c.chunk.js",
+    "static/media/profile.jpg": "/galerey/static/media/profile.79c2b07c783c292b386a.jpg",
+    "static/media/photoghraf.jpg": "/galerey/static/media/photoghraf.80a58f8d22638a955005.jpg",
+    "static/media/react-svgrepo-com.svg": "/galerey/static/media/react-svgrepo-com.fdd3331d261ad6d5e1c92448737aa2aa.svg",
+    "static/media/html-svgrepo-com.svg": "/galerey/static/media/html-svgrepo-com.d1164a6a7d1cd7faf04875410410ecb1.svg",
+    "static/media/css-svgrepo-com.svg": "/galerey/static/media/css-svgrepo-com.02379596f0526a4a0523b73b0b1c212b.svg",
+    "static/media/redux-svgrepo-com.svg": "/galerey/static/media/redux-svgrepo-com.609190d142776d97540d56376fce6a2c.svg",
+    "static/media/node-svgrepo-com.svg": "/galerey/static/media/node-svgrepo-com.319ec85437cbf7be8288ab6997ccc1a0.svg",
+    "static/media/gmail-svgrepo-com.svg": "/galerey/static/media/gmail-svgrepo-com.4dc0f055fc6d13d52e60065d50cd89e4.svg",
+    "static/media/telegram-svgrepo-com.svg": "/galerey/static/media/telegram-svgrepo-com.593f31b6fc36b0ed21d97ecabe278797.svg",
+    "static/media/github-svgrepo-com.svg": "/galerey/static/media/github-svgrepo-com.8fad0c53c67bf4a91f0686d7ea1024b7.svg",
+    "static/media/scss2-svgrepo-com.svg": "/galerey/static/media/scss2-svgrepo-com.1074d0351e670acb335441f19535b7ca.svg",
+    "static/media/typescript-svgrepo-com.svg": "/galerey/static/media/typescript-svgrepo-com.0862127c02a57f6d39dabe211ae436ab.svg",
+    "static/media/like-svgrepo-com.svg": "/galerey/static/media/like-svgrepo-com.c8d9f84655396524e1398ae0865334d7.svg",
+    "index.html": "/galerey/index.html",
+    "static/media/js-svgrepo-com.svg": "/galerey/static/media/js-svgrepo-com.0dd1cf6c80bb500c655a617006c1148a.svg",
+    "main.8ce72754.css.map": "/galerey/static/css/main.8ce72754.css.map",
+    "main.10c5bfbb.js.map": "/galerey/static/js/main.10c5bfbb.js.map",
+    "787.b701888c.chunk.js.map": "/galerey/static/js/787.b701888c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8ce72754.css",
-    "static/js/main.78c86a74.js"
+    "static/js/main.10c5bfbb.js"
   ]
 }

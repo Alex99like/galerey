@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8ce72754.css",
+    "main.js": "/static/js/main.78c86a74.js",
+    "static/js/787.b701888c.chunk.js": "/static/js/787.b701888c.chunk.js",
+    "static/media/profile.jpg": "/static/media/profile.79c2b07c783c292b386a.jpg",
+    "static/media/photoghraf.jpg": "/static/media/photoghraf.80a58f8d22638a955005.jpg",
+    "static/media/react-svgrepo-com.svg": "/static/media/react-svgrepo-com.fdd3331d261ad6d5e1c92448737aa2aa.svg",
+    "static/media/html-svgrepo-com.svg": "/static/media/html-svgrepo-com.4395a089ee4b1338c0e94e212b6dd055.svg",
+    "static/media/css-svgrepo-com.svg": "/static/media/css-svgrepo-com.43e23cbe8867c12ec74e7a444ab2d947.svg",
+    "static/media/redux-svgrepo-com.svg": "/static/media/redux-svgrepo-com.609190d142776d97540d56376fce6a2c.svg",
+    "static/media/node-svgrepo-com.svg": "/static/media/node-svgrepo-com.319ec85437cbf7be8288ab6997ccc1a0.svg",
+    "static/media/gmail-svgrepo-com.svg": "/static/media/gmail-svgrepo-com.7014c106863669faa2e8edf006d26793.svg",
+    "static/media/telegram-svgrepo-com.svg": "/static/media/telegram-svgrepo-com.d35461dc7b20898a0e35a06a860992b1.svg",
+    "static/media/github-svgrepo-com.svg": "/static/media/github-svgrepo-com.c62c8cdb8e7fcf638978864991f97bd4.svg",
+    "static/media/scss2-svgrepo-com.svg": "/static/media/scss2-svgrepo-com.1074d0351e670acb335441f19535b7ca.svg",
+    "static/media/like-svgrepo-com.svg": "/static/media/like-svgrepo-com.336d8a70da89407ebc87e37cc756bf35.svg",
+    "static/media/typescript-svgrepo-com.svg": "/static/media/typescript-svgrepo-com.0862127c02a57f6d39dabe211ae436ab.svg",
+    "index.html": "/index.html",
+    "static/media/js-svgrepo-com.svg": "/static/media/js-svgrepo-com.0dd1cf6c80bb500c655a617006c1148a.svg",
+    "main.8ce72754.css.map": "/static/css/main.8ce72754.css.map",
+    "main.78c86a74.js.map": "/static/js/main.78c86a74.js.map",
+    "787.b701888c.chunk.js.map": "/static/js/787.b701888c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8ce72754.css",
+    "static/js/main.78c86a74.js"
+  ]
+}

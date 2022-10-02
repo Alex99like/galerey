@@ -1,0 +1,40 @@
+.welcome-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .welcome {
+    width: 600px;
+    padding: 50px;
+    box-shadow: 0 6px 10px rgba(105, 105, 105, 0.414);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 40px;
+    margin: 120px auto;
+    color: dimgray;
+    font-weight: 800;
+
+    a {
+      text-decoration: none;
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px;
+      border-radius: 30px;
+      width: 200px;
+      background-color: rgba(7, 196, 7, 0.434);
+      box-shadow: 0 10px 10px rgba(7, 196, 7, 0.234);
+      font-weight: 800;
+      color: azure;
+      text-shadow: 0 0 2px black;
+      transition: .3s;
+
+      &:hover {
+        transform: scale(1.05);
+        background-color: rgba(7, 196, 7, 0.634);
+      }
+    }
+  }
+}
+

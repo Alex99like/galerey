@@ -1,6 +1,6 @@
 import { IApprove, IFormResult, IValidateForm, IWhoSee } from 'components/form/Form';
 import { colorOption } from 'components/form/FormSelect';
-import Photo from '../../assets/photo.jpg';
+import Photo from '../../../assets/photo.jpg';
 
 const defaultValue = {
   profile: `Сlick here or drag the image to <span>Download!!!</span>`,

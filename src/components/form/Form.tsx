@@ -6,7 +6,7 @@ import FormRadio from './FormRadio';
 import FormSelect from './FormSelect';
 import FormTitle from './FormTitle';
 import ProfileLoad from './ProfileLoad';
-import Validate from 'components/common/Validate';
+import Validate from 'components/common/validate/Validate';
 import { ISaveFnGet } from 'page/formPage/FormPage';
 
 interface IProfile {

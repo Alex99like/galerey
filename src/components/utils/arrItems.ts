@@ -10702,7 +10702,6 @@ const fetchItemImage = (): Promise<IImageItem[]> =>
 const fetchItemImageFind = (search: string): Promise<IImageItem[]> =>
   new Promise((resolve) => {
     setTimeout(function () {
-      console.log(arrImage.filter((el) => el.user.name.includes(search)));
       resolve(
         arrImage.filter((el) =>
           el.user.name.toLowerCase().includes(search)

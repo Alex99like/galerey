@@ -1,0 +1,109 @@
+.item-card {
+  position: relative;
+  width: 300px;
+  border-radius: 50px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+
+  .user {
+    width: 200px;
+    margin-left: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+    h5 {
+      position: relative;
+      top: 8px;
+      font-size: 16px;
+      font-weight: 800;
+      color: dimgray;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
+
+  .date {
+    position: absolute;
+    font-weight: 800;
+    text-shadow: 0 0 2px black;
+    top: 20px;
+    padding: 4px;
+    right: 15px;
+    transform: rotate(10deg);
+    box-shadow: 0 0 2px dimgray;
+    color: aliceblue;
+  }
+
+  .likes {
+    position: absolute;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    top: -70px;
+    right: 0px;
+  
+    span {
+      font-weight: 800;
+      color: aliceblue;
+      text-shadow: 0 0 2px black;
+      margin-top: 20px;
+    }
+
+    img {
+      width: 40px;
+    }
+  }
+
+  img {
+    width: 280px;
+    border-radius: 20px;
+    margin: 20px 10px 0;
+  }
+
+  .description {
+    position: relative;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 40px;
+    font-size: 13px;
+    font-weight: 800;
+
+    .tags {
+      margin-top: 10px;
+      display: flex;
+      width: 90%;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      span {
+        border-radius: 5px;
+        font-size: 13px;
+        padding: 3px 8px;
+      }
+    }
+
+    
+    
+    fieldset {
+      width: 80%;
+      padding: 5px;
+      margin-right: 10px;
+      border-radius: 10px;
+      border: 0;
+      box-shadow: 0 2px 4px rgba(105, 105, 105, 0.338);
+      color: dimgray;
+
+      legend {
+        margin-left: 4px;
+        padding: 0 4px;
+        background-color: white;
+      }
+    }
+  }
+}

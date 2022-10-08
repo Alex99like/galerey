@@ -47,7 +47,7 @@ class Validate {
     } else {
       elNode.current?.classList.add('error');
       elNode.current!.textContent =
-        'the name can only contain Latin letters and numbers from 3 to 10 characters';
+        'the name can only contain Latin letters and numbers from 3 to 12 characters';
       return false;
     }
   }

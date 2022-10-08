@@ -2,6 +2,7 @@ import People from '../../../assets/teamwork.png';
 import Friends from '../../../assets/friends.png';
 import Favorites from '../../../assets/star.png';
 import Alert from '../../../assets/tick.png';
+import './customCard.scss';
 import { ICustomCard } from 'page/formPage/FormPage';
 import React, { Component } from 'react';
 

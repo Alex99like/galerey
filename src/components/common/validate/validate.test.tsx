@@ -15,27 +15,11 @@ describe('test form', () => {
     },
   };
 
-  const validate = {
-    current: {
-      textContent: '',
-      classList: {
-        remove: () => false,
-        add: () => false,
-      },
-    },
-  };
-
   it('test input text', () => {
-    const checkTrue = Validate.validateTitle(
-      valueTitleTrue as React.RefObject<HTMLInputElement>,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkTrue = Validate.validateTitle(valueTitleTrue as React.RefObject<HTMLInputElement>);
     expect(checkTrue).toBe(true);
 
-    const checkFalse = Validate.validateTitle(
-      valueTitleFalse as React.RefObject<HTMLInputElement>,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkFalse = Validate.validateTitle(valueTitleFalse as React.RefObject<HTMLInputElement>);
     expect(checkFalse).toBe(false);
   });
 
@@ -52,15 +36,9 @@ describe('test form', () => {
   };
 
   it('test input radio', () => {
-    const checkTrue = Validate.validateWhoSee(
-      valueWhoSeeTrue as IWhoSee,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkTrue = Validate.validateWhoSee(valueWhoSeeTrue as IWhoSee);
 
-    const checkFalse = Validate.validateWhoSee(
-      valueWhoSeeFalse as IWhoSee,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkFalse = Validate.validateWhoSee(valueWhoSeeFalse as IWhoSee);
 
     expect(checkTrue).toBe(true);
     expect(checkFalse).toBe(false);
@@ -75,14 +53,10 @@ describe('test form', () => {
   };
 
   it('test input color', () => {
-    const checkTrue = Validate.validateColor(
-      valueColorTrue as React.RefObject<HTMLSelectElement>,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkTrue = Validate.validateColor(valueColorTrue as React.RefObject<HTMLSelectElement>);
 
     const checkFalse = Validate.validateColor(
-      valueColorFalse as React.RefObject<HTMLSelectElement>,
-      validate as unknown as React.RefObject<HTMLLegendElement>
+      valueColorFalse as React.RefObject<HTMLSelectElement>
     );
 
     expect(checkTrue).toBe(true);
@@ -98,15 +72,9 @@ describe('test form', () => {
   };
 
   it('test input date', () => {
-    const checkTrue = Validate.validateDate(
-      valueDateTrue as React.RefObject<HTMLInputElement>,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkTrue = Validate.validateDate(valueDateTrue as React.RefObject<HTMLInputElement>);
 
-    const checkFalse = Validate.validateDate(
-      valueDateFalse as React.RefObject<HTMLInputElement>,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkFalse = Validate.validateDate(valueDateFalse as React.RefObject<HTMLInputElement>);
 
     expect(checkTrue).toBe(true);
     expect(checkFalse).toBe(false);
@@ -123,15 +91,9 @@ describe('test form', () => {
   };
 
   it('test input checkbox', () => {
-    const checkTrue = Validate.validateApproved(
-      valueApproveTrue as IApprove,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkTrue = Validate.validateApproved(valueApproveTrue as IApprove);
 
-    const checkFalse = Validate.validateApproved(
-      valueApproveFalse as IApprove,
-      validate as unknown as React.RefObject<HTMLLegendElement>
-    );
+    const checkFalse = Validate.validateApproved(valueApproveFalse as IApprove);
 
     expect(checkTrue).toBe(true);
     expect(checkFalse).toBe(false);

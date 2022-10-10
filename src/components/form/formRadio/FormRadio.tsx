@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import People from '../../assets/teamwork.png';
-import Friends from '../../assets/friends.png';
-import Favorites from '../../assets/star.png';
-import { IWhoSee } from './Form';
+import People from '../../../assets/teamwork.png';
+import Friends from '../../../assets/friends.png';
+import Favorites from '../../../assets/star.png';
+import { IWhoSee } from '../Form';
 
 interface IStateRadio {
   value: string;
@@ -10,13 +10,21 @@ interface IStateRadio {
 
 interface IPropsRadio {
   input: IWhoSee;
-  validate: React.RefObject<HTMLLegendElement>;
+  validate: boolean;
 }
 class FormRadio extends Component<IPropsRadio, IStateRadio> {
+  errorMessage: string;
+
+  constructor(props: IPropsRadio) {
+    super(props);
+    this.errorMessage = 'Choose who sees your Photo';
+  }
   render(): React.ReactNode {
     return (
       <fieldset className={'form-radio'}>
-        <legend ref={this.props.validate}>Who sees your Photo?</legend>
+        <legend className={this.props.validate ? '' : 'error'}>
+          {this.props.validate ? 'Who sees your Photo?' : this.errorMessage}
+        </legend>
         <div className={'container'}>
           <input
             ref={this.props.input.allPeople}

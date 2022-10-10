@@ -1,0 +1,43 @@
+.modal-success-form {
+  position: absolute;
+  display: flex;
+  z-index: 10;
+  padding: 50px;
+  width: 550px;
+  height: 150px;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 8px 15px rgba(105, 105, 105, 0.288);
+  border-radius: 40px;
+  transition: 1.5s;
+  left: 12%;
+  top: -500px;
+  
+  &.active {
+    left: 12%;
+    top: 30%;
+  }
+
+  h1 {
+    font-weight: 800;
+    color: dimgray;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+@keyframes animation-name {   
+  0% {     
+    color: pink;   
+  }   
+  50% {     
+    color: yellow;   
+  } 
+  100% {
+    color: blue;
+   }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Photo from '../../assets/photo.jpg';
+import Photo from '../../../assets/photo.jpg';
 
 interface IStateForm {
   dropClass: boolean;
@@ -8,7 +8,7 @@ interface IStateForm {
 
 interface IPropsProfile {
   input: React.RefObject<HTMLInputElement>;
-  validate: React.RefObject<HTMLParagraphElement>;
+  validate: boolean;
   image: React.RefObject<HTMLImageElement>;
 }
 
@@ -72,8 +72,14 @@ class ProfileLoad extends Component<IPropsProfile, IStateForm> {
             id="upload-profile"
             type={'file'}
           />
-          <p ref={this.props.validate}>
-            Сlick here or drag the image to <span>Download!!!</span>
+          <p className={this.props.validate ? '' : 'error'}>
+            {this.props.validate ? (
+              <>
+                Сlick here or drag the image to <span>Download!!!</span>
+              </>
+            ) : (
+              'invalid file format images are allowed (jpg, jpeg, svg)'
+            )}
           </p>
         </label>
       </fieldset>

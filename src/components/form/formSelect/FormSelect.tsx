@@ -6,7 +6,7 @@ interface IStateSelect {
 
 interface IPropsSelect {
   input: React.RefObject<HTMLSelectElement>;
-  validate: React.RefObject<HTMLLegendElement>;
+  validate: boolean;
 }
 
 export const colorOption = [
@@ -18,11 +18,14 @@ export const colorOption = [
   { value: 'rgba(189, 7, 239, 0.319)', name: 'Purple' },
 ];
 class FormSelect extends Component<IPropsSelect, IStateSelect> {
+  errorMessage: string;
+
   constructor(props: IPropsSelect) {
     super(props);
     this.state = {
       value: '',
     };
+    this.errorMessage = 'Choose Color';
   }
 
   render(): React.ReactNode {
@@ -30,7 +33,9 @@ class FormSelect extends Component<IPropsSelect, IStateSelect> {
       <div className={'color-card'}>
         <label>
           <fieldset style={{ backgroundColor: this.state.value }}>
-            <legend ref={this.props.validate}>Color Card</legend>
+            <legend className={this.props.validate ? '' : 'error'}>
+              {this.props.validate ? 'Color Card' : this.errorMessage}
+            </legend>
             <select
               ref={this.props.input}
               onChange={(e) => this.setState({ value: e.target.value })}

@@ -7,6 +7,7 @@ import ImageLike from '../../../assets/like-svgrepo-com.svg';
 
 interface ICardProps {
   item: IImageItem;
+  callModal: () => void;
 }
 
 class Card extends Component<ICardProps> {
@@ -14,7 +15,7 @@ class Card extends Component<ICardProps> {
     const { id, cover_photo, description, published_at, tags, title, user } = this.props.item;
 
     return (
-      <div className={'item-card'} data-testid={id}>
+      <div className={'item-card'} onClick={this.props.callModal} data-testid={id}>
         <div className={'user'}>
           <img
             src={

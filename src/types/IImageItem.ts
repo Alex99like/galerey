@@ -15,19 +15,42 @@ interface IUserProfile {
 
 interface IUserItem {
   id: string;
+  bio: string;
   username: string;
   name: string;
+  total_likes: number;
+  total_collections: number;
+  total_photos: 0;
   portfolio_url: null | string;
-  links: {
-    self: string;
-    html: string;
-    photos: string;
-    likes: string;
-    portfolio: string;
-    following: string;
-    followers: string;
+  location: string;
+  instagram_username: string;
+  social: {
+    instagram_username: string;
+    portfolio_url: string;
+    twitter_username: string;
   };
+  // links: {
+  //   self: string;
+  //   html: string;
+  //   photos: string;
+  //   likes: string;
+  //   portfolio: string;
+  //   following: string;
+  //   followers: string;
+  // };
   profile_image: IUserProfile;
+}
+
+interface IPreviewPhotos {
+  created_at: string;
+  id: string;
+  urls: {
+    full: string;
+    raw: string;
+    regular: string;
+    small: string;
+    thumb: string;
+  };
 }
 
 interface ICoverPhoto {
@@ -53,8 +76,10 @@ interface IImageItem {
   title: string;
   description: string | null;
   published_at: string;
+  total_photos: number;
   tags: ITagsItem[];
   user: IUserItem;
+  preview_photos: IPreviewPhotos[];
   cover_photo: ICoverPhoto;
 }
 

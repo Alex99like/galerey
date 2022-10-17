@@ -2,25 +2,28 @@ import { fetchItemImage } from 'components/utils/arrItems';
 import Card from './Card';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import FetchApi from 'api/FetchApi';
 
-// describe('test card', () => {
-//   test('render card', async () => {
-//     const res = await fetchItemImage();
-//     const random = Math.floor(Math.random() * res.length);
+describe('test card', () => {
+  const testFn = () => {};
 
-//     const tags = res[random].tags;
+  test('render card', async () => {
+    const res = await FetchApi.getCards();
+    const random = Math.floor(Math.random() * res.length);
 
-//     render(<Card item={res[random]} />);
+    const tags = res[random].tags;
 
-//     const img = screen.getAllByRole('img');
-//     const username = screen.getByText(res[random].user.name);
+    render(<Card callModal={testFn} item={res[random]} />);
 
-//     tags.forEach((tag) => {
-//       const el = screen.getByText(`#${tag.title}`);
-//       expect(el).toBeInTheDocument();
-//     });
+    const img = screen.getAllByRole('img');
+    const username = screen.getByText(res[random].user.name);
 
-//     expect(img).toHaveLength(3);
-//     expect(username).toBeInTheDocument();
-//   });
-// });
+    tags.forEach((tag) => {
+      const el = screen.getByText(`#${tag.title}`);
+      expect(el).toBeInTheDocument();
+    });
+
+    expect(img).toHaveLength(3);
+    expect(username).toBeInTheDocument();
+  });
+});

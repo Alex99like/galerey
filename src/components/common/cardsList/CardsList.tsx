@@ -58,7 +58,7 @@ class CardsList extends Component<IPropsCards, IStateCardsList> {
   render() {
     const { items } = this.props;
     return (
-      <div style={{ height: this.state.height }} className="items-container">
+      <div style={{ height: this.state.height }} className={'items-container'}>
         {items.length === 0 && (
           <div className={'no-results'}>
             Sorry, nothing was found on the request, to return, press <span>Enter</span>

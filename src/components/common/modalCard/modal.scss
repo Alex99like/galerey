@@ -14,8 +14,8 @@
   }
 
   .modal {
-    width: 650px;
-    height: 470px;
+    min-width: 650px;
+    min-height: 470px;
     margin-top: 50px;
     position: relative;
     background-color: white;

@@ -38,6 +38,14 @@ class Home extends React.Component<[], IStateHome> {
     this.setState({ loader: true });
   }
 
+  hiddenScroll(active: boolean) {
+    if (active) {
+      document.body.classList.add('modal');
+    } else {
+      document.body.classList.remove('modal');
+    }
+  }
+
   async searchMethod(str: string) {
     this.setState({ loader: false });
     const res = await FetchApi.getCards(1, str.trim().toLowerCase() || 'new-york');
@@ -49,10 +57,10 @@ class Home extends React.Component<[], IStateHome> {
   setStateModal(state: boolean, id?: string) {
     if (state && id) {
       this.setState({ isModal: { active: true, id } });
-      document.body.classList.add('modal');
+      this.hiddenScroll(true);
     } else {
       this.setState({ isModal: { active: false } });
-      document.body.classList.remove('modal');
+      this.hiddenScroll(false);
     }
   }
 

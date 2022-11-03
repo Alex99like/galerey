@@ -1,9 +1,15 @@
 import { IImageItem } from 'types/IImageItem';
 
+interface IResponseApi {
+  total: number;
+  total_pages: number;
+  results: IImageItem[];
+}
+
 class FetchApi {
-  static async getCards(page = 1, search = 'new-york') {
+  static async getCards(page = 1, search = 'new-york', sort = 'latest') {
     const response = await fetch(
-      `https://api.unsplash.com/search/collections?page=${page}&query=${search}`,
+      `https://api.unsplash.com/search/collections?page=${page}?order_by=${sort}&query=${search}`,
       {
         method: 'GET',
         headers: {
@@ -12,8 +18,7 @@ class FetchApi {
       }
     );
 
-    const results = ((await response.json()) as { results: IImageItem[] }).results;
-
+    const results = (await response.json()) as IResponseApi;
     return results;
   }
 }

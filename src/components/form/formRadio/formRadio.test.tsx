@@ -1,21 +1,36 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import FormRadio from './FormRadio';
-import { IWhoSee } from '../Form';
+import { FieldErrorsImpl } from 'react-hook-form';
 
 describe('test approve', () => {
-  const valueWhoSee = {
-    allPeople: { current: { checked: true, value: 'allPeople' } },
-    fiends: { current: { checked: false } },
-    favorites: { current: { checked: false } },
-  };
-
-  test('test error', async () => {
-    render(<FormRadio validate={false} input={valueWhoSee as IWhoSee} />);
-    screen.getByText('Choose who sees your Photo');
-  });
+  const errors: Partial<
+    FieldErrorsImpl<{
+      image: Blob;
+      title: string;
+      date: string;
+      select: string;
+      radio: string;
+      approve: string;
+    }>
+  > = {};
   test('test right', async () => {
-    render(<FormRadio validate={true} input={valueWhoSee as IWhoSee} />);
+    render(
+      <FormRadio errors={errors}>
+        <div className={'container'}>
+          <input value={'all-people'} id={'all-people'} type={'radio'} />
+          <label htmlFor={'all-people'}>
+            <span>All People</span>
+          </label>
+        </div>
+        <div className={'container'}>
+          <input id={'friends'} value={'friends'} type={'radio'} />
+          <label htmlFor={'friends'}>
+            <span>Friends</span>
+          </label>
+        </div>
+      </FormRadio>
+    );
     screen.getByText('Who sees your Photo?');
   });
 });

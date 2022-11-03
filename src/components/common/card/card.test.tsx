@@ -8,7 +8,7 @@ describe('test card', () => {
   const testFn = () => {};
 
   test('render card', async () => {
-    const res = await FetchApi.getCards();
+    const res = await (await FetchApi.getCards()).results;
     const random = Math.floor(Math.random() * res.length);
 
     const tags = res[random].tags;

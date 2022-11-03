@@ -1,96 +1,82 @@
-import React, { Component } from 'react';
+import { actionSetSort } from 'context/ReduceAction';
+import { useSelectorReduce } from 'context/ReducerProvider';
+import { useLocalStorage } from 'hooks/useLocalStorage';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import './search.scss';
 
 interface IPropsSearch {
   searchMethod: (str: string) => void;
-  inputSearch: string;
+  prevRequest: string;
 }
 
-interface IStateSearch {
-  inputSearch: string;
-  activeClass: boolean;
-  prevResp: string;
-}
-class Search extends Component<IPropsSearch, IStateSearch> {
-  input: React.RefObject<HTMLInputElement>;
+const Search: FC<IPropsSearch> = ({ searchMethod }) => {
+  const input = useRef<HTMLInputElement>(null);
+  const { dispatch, sort, search: stateSearch } = useSelectorReduce();
+  const [search, setSearch] = useLocalStorage('input-v21', '');
+  const [active, setActive] = useState<boolean>(false);
 
-  constructor(props: IPropsSearch) {
-    super(props);
-    this.state = {
-      inputSearch: props.inputSearch,
-      activeClass: false,
-      prevResp: '',
-    };
-    this.input = React.createRef();
-  }
+  const inputMethod = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
-  componentWillUnmount(): void {
-    const value = this.state.inputSearch;
-    localStorage.setItem('search-v-1', JSON.stringify(value));
-  }
+  useEffect(() => {
+    input.current?.focus();
+  });
 
-  componentDidMount(): void {
-    this.input.current?.focus();
-  }
+  const submitMethod = () => {
+    searchMethod(search);
+    setSearch('');
+    input.current?.focus();
+  };
 
-  inputMethod(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState((prev) => ({ ...prev, inputSearch: e.target.value }));
-  }
-
-  submitMethod() {
-    this.props.searchMethod(this.state.inputSearch);
-    this.setState((prev) => ({ ...prev, prevResp: this.state.inputSearch, inputSearch: '' }));
-    this.input.current?.focus();
-  }
-
-  submitEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+  const submitEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      this.props.searchMethod(this.state.inputSearch);
-      this.setState((prev) => ({
-        ...prev,
-        prevResp: this.state.inputSearch,
-        inputSearch: '',
-        activeClass: true,
-      }));
+      searchMethod(search);
+      setSearch('');
+      setActive(true);
     }
-  }
+  };
 
-  submitUpEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+  const submitUpEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      this.setState((prev) => ({ ...prev, activeClass: false }));
+      setActive(false);
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className={'search-container'}>
-        <input
-          ref={this.input}
-          onKeyDown={(e) => this.submitEnter(e)}
-          onKeyUp={(e) => this.submitUpEnter(e)}
-          onChange={(e) => this.inputMethod(e)}
-          value={this.state.inputSearch}
-          type={'search'}
-          placeholder={
-            this.state.prevResp ? `${this.state.prevResp}...` : 'Enter your User Name... '
-          }
-        />
-        <button
-          className={this.state.activeClass ? 'active' : ''}
-          onClick={() => this.submitMethod()}
-          onMouseDown={() => {
-            this.setState({ activeClass: true });
-          }}
-          onMouseUp={() => {
-            this.setState({ activeClass: false });
-          }}
-          type={'button'}
-        >
-          SEARCH
-        </button>
-      </div>
-    );
-  }
-}
+  const handleSubmit = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch && dispatch(actionSetSort(e.target.value));
+  };
+
+  return (
+    <div className={'search-container'}>
+      <select
+        defaultValue={sort === 'latest' ? 'latest' : 'oldest'}
+        onChange={handleSubmit}
+        className={'sort-by'}
+      >
+        <option value={'latest'}>LATEST</option>
+        <option value={'oldest'}>OLDEST</option>
+      </select>
+      <input
+        ref={input}
+        onKeyDown={submitEnter}
+        onKeyUp={submitUpEnter}
+        onChange={inputMethod}
+        value={search}
+        type={'search'}
+        placeholder={`${!!stateSearch ? `${stateSearch}...` : 'Enter your Title Photo...'}`}
+      />
+      <button
+        className={active ? 'active' : ''}
+        onClick={submitMethod}
+        onMouseDown={() => setActive(true)}
+        onMouseUp={() => setActive(false)}
+        type={'button'}
+      >
+        SEARCH
+      </button>
+    </div>
+  );
+};
 
 export default Search;

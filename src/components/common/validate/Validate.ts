@@ -1,6 +1,30 @@
-import { IApprove, IFormResult, IWhoSee } from 'components/form/Form';
-import { colorOption } from 'components/form/formSelect/FormSelect';
+import { colorOption } from 'components/utils/colorOptions';
 import Photo from '../../../assets/photo.jpg';
+
+interface IProfile {
+  input: React.RefObject<HTMLInputElement>;
+  img: React.RefObject<HTMLImageElement>;
+}
+export interface IWhoSee {
+  allPeople: React.RefObject<HTMLInputElement>;
+  fiends: React.RefObject<HTMLInputElement>;
+  favorites: React.RefObject<HTMLInputElement>;
+}
+
+export interface IApprove {
+  alerts: React.RefObject<HTMLInputElement>;
+  likes: React.RefObject<HTMLInputElement>;
+}
+
+export interface IFormResult {
+  profile: IProfile;
+  title: React.RefObject<HTMLInputElement>;
+  date: React.RefObject<HTMLInputElement>;
+  color: React.RefObject<HTMLSelectElement>;
+  whoSee: IWhoSee;
+  approve: IApprove;
+}
+
 class Validate {
   static validateImage(value: React.RefObject<HTMLInputElement>) {
     const { current } = value;

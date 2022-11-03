@@ -1,18 +1,25 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import FormDate from './FormDate';
+import { FieldErrorsImpl } from 'react-hook-form';
 
 describe('test approve', () => {
-  const valueDate = {
-    current: { value: '2022-10-07' },
-  };
-
-  test('test error', async () => {
-    render(<FormDate validate={false} input={valueDate as React.RefObject<HTMLInputElement>} />);
-    screen.getByText('The date cannot be higher than the current one');
-  });
+  const errors: Partial<
+    FieldErrorsImpl<{
+      image: Blob;
+      title: string;
+      date: string;
+      select: string;
+      radio: string;
+      approve: string;
+    }>
+  > = {};
   test('test right', async () => {
-    render(<FormDate validate={true} input={valueDate as React.RefObject<HTMLInputElement>} />);
+    render(
+      <FormDate errors={errors}>
+        <input type={'date'} />
+      </FormDate>
+    );
     screen.getByText('Data Create Photo');
   });
 });

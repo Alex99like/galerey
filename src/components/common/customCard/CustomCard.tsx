@@ -3,8 +3,8 @@ import Friends from '../../../assets/friends.png';
 import Favorites from '../../../assets/star.png';
 import Alert from '../../../assets/tick.png';
 import './customCard.scss';
-import { ICustomCard } from 'page/formPage/FormPage';
-import React, { Component } from 'react';
+import { ICard } from 'page/formPage/FormPage';
+import React, { FC } from 'react';
 
 export interface IWhoSee {
   allPeople: React.RefObject<HTMLInputElement>;
@@ -23,25 +23,26 @@ export interface ICustomCardWhoSee {
   allPeople: boolean;
 }
 
-class CustomCard extends Component<{ item: ICustomCard }> {
-  createImage(who: ICustomCardWhoSee) {
-    if (who.allPeople) return People;
-    if (who.favorite) return Favorites;
-    if (who.friends) return Friends;
-  }
+const CustomCard: FC<{ card: ICard }> = ({ card }) => {
+  const createImage = (who: string) => {
+    if (who === 'all-people') return People;
+    if (who === 'favorites') return Favorites;
+    if (who === 'friends') return Friends;
+  };
 
-  render(): React.ReactNode {
-    const { title, date, approve, color, profile, whoSee } = this.props.item;
-    return (
-      <div style={{ boxShadow: `0 7px 20px ${color}` }} className="item-custom-card">
-        <h3>{date}</h3>
-        <h1>{title}</h1>
-        <img className={'who-see'} src={this.createImage(whoSee)} />
-        <img src={profile} />
-        <img className={'approve'} src={approve ? Alert : ''} />
-      </div>
-    );
-  }
-}
+  const { title, date, approve, select, image, radio } = card;
+
+  // const Image = URL.createObjectURL(URL.createObjectURL(image.files![0]));
+
+  return (
+    <div style={{ boxShadow: `0 7px 20px ${select}` }} className="item-custom-card">
+      <h3>{date}</h3>
+      <h1>{title}</h1>
+      <img className={'who-see'} src={createImage(radio)} />
+      <img src={image} />
+      <img className={'approve'} src={approve ? Alert : ''} />
+    </div>
+  );
+};
 
 export default CustomCard;

@@ -4,20 +4,16 @@ import CustomCard from './CustomCard';
 
 describe('test card', () => {
   const itemTest = {
+    image: '../../../assets/checked.png',
     title: 'Test',
-    profile: '../../../assets/checked.png',
     date: '2012-12-12',
-    color: '#fff',
-    whoSee: {
-      favorite: true,
-      friends: false,
-      allPeople: false,
-    },
-    approve: true,
+    select: '#fff',
+    radio: 'favorites',
+    approve: 'on',
   };
 
   test('render custom card', async () => {
-    render(<CustomCard item={itemTest} />);
+    render(<CustomCard card={itemTest} />);
 
     const img = screen.getAllByRole('img');
     const username = screen.getByText(itemTest.title);

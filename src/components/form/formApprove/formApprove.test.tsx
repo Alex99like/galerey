@@ -1,20 +1,26 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import FormApprove from './FormApprove';
-import { IApprove } from '../Form';
+import { FieldErrorsImpl } from 'react-hook-form';
 
 describe('test approve', () => {
-  const valueApprove = {
-    alerts: { current: { checked: false } },
-    likes: { current: { checked: true } },
-  };
+  const errors: Partial<
+    FieldErrorsImpl<{
+      image: Blob;
+      title: string;
+      date: string;
+      select: string;
+      radio: string;
+      approve: string;
+    }>
+  > = {};
 
-  test('test error', async () => {
-    render(<FormApprove validate={false} input={valueApprove as IApprove} />);
-    screen.getByText('Read the terms of use of the service');
-  });
   test('test right', async () => {
-    render(<FormApprove validate={true} input={valueApprove as IApprove} />);
+    render(
+      <FormApprove errors={errors}>
+        <input id={'likes'} value={'likes'} type={'checkbox'} />
+      </FormApprove>
+    );
     screen.getByText('Your Approved');
   });
 });

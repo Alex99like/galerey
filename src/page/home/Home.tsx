@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IImageItem } from '../../types/IImageItem';
 import './home.scss';
 import Loader from 'components/common/loader/Loader';
 import Search from 'components/search/Search';
 import CardsList from 'components/common/cardsList/CardsList';
-import FetchApi from 'api/FetchApi';
-import Modal from 'components/common/modalCard/Modal';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelectorReduce } from 'context/ReducerProvider';
+import { actionReset, actionSetPage, actionSetSearch } from 'context/ReduceAction';
 export interface IStateHome {
   inputSearch: '';
   items: IImageItem[];
@@ -15,77 +16,33 @@ export interface IStateHome {
     id?: string;
   };
 }
-class Home extends React.Component<[], IStateHome> {
-  constructor(props: []) {
-    super(props);
-    this.state = {
-      inputSearch: JSON.parse(localStorage.getItem('search-v-1')!),
-      items: [],
-      loader: false,
-      isModal: {
-        active: false,
-        id: '',
-      },
+const Home = () => {
+  const { search, pageCards, dispatch, loading } = useSelectorReduce();
+  const navigate = useNavigate();
+
+  const { page } = useParams();
+
+  useEffect(() => {
+    if (dispatch && page) dispatch(actionSetPage(+page));
+    return () => {
+      localStorage.setItem('request-v-1', search);
     };
-  }
+  }, [dispatch, page, search]);
 
-  async componentDidMount(): Promise<void> {
-    this.setState({ loader: false });
-    const response = await FetchApi.getCards();
-    this.setState({
-      items: response,
-    });
-    this.setState({ loader: true });
-  }
-
-  hiddenScroll(active: boolean) {
-    if (active) {
-      document.body.classList.add('modal');
-    } else {
-      document.body.classList.remove('modal');
+  const searchMethod = (str: string) => {
+    if (dispatch && search !== str) {
+      navigate('/home/1');
+      dispatch(actionReset());
+      dispatch(actionSetSearch(str));
     }
-  }
+  };
 
-  async searchMethod(str: string) {
-    this.setState({ loader: false });
-    const res = await FetchApi.getCards(1, str.trim().toLowerCase() || 'new-york');
-    this.setState({ loader: true });
-    console.log(res);
-    this.setState((prev) => ({ ...prev, items: res }));
-  }
-
-  setStateModal(state: boolean, id?: string) {
-    if (state && id) {
-      this.setState({ isModal: { active: true, id } });
-      this.hiddenScroll(true);
-    } else {
-      this.setState({ isModal: { active: false } });
-      this.hiddenScroll(false);
-    }
-  }
-
-  render() {
-    return (
-      <>
-        {this.state.isModal.active && (
-          <Modal
-            card={this.state.items.find((el) => el.id === this.state.isModal.id)!}
-            closeModal={this.setStateModal.bind(this)}
-          />
-        )}
-        <Search searchMethod={this.searchMethod.bind(this)} inputSearch={this.state.inputSearch} />
-        {this.state.loader ? (
-          <CardsList
-            isModal={this.state.isModal.active}
-            stateModal={this.setStateModal.bind(this)}
-            items={this.state.items}
-          />
-        ) : (
-          <Loader />
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Search searchMethod={searchMethod} prevRequest={search} />
+      {loading ? <Loader /> : <CardsList items={pageCards} />}
+    </>
+  );
+};
 
 export default Home;

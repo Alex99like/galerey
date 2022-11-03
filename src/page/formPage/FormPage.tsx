@@ -1,13 +1,9 @@
-import Form, { IFormResult } from 'components/form/Form';
+import Form from 'components/form/Form';
 import ListCustomCards from 'components/listCustomCards/ListCustomCards';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './formPage.scss';
 import { ICustomCardWhoSee } from 'components/common/customCard/CustomCard';
 
-type FnGetCard = (form: IFormResult) => void;
-export interface ISaveFnGet {
-  fn: FnGetCard | null;
-}
 export interface ICustomCard {
   title: string;
   profile: string;
@@ -16,24 +12,35 @@ export interface ICustomCard {
   whoSee: ICustomCardWhoSee;
   approve: boolean;
 }
-class FormPage extends React.Component<object, { containerCard: ICustomCard[] }> {
-  containerCard: ICustomCard[];
-  getCard: ISaveFnGet;
 
-  constructor(props: object) {
-    super(props);
-    this.containerCard = [];
-    this.getCard = { fn: null };
-  }
-
-  render() {
-    return (
-      <div className={'form-page-container'}>
-        <Form getCard={this.getCard} />
-        <ListCustomCards renderCard={this.getCard} />
-      </div>
-    );
-  }
+export interface ICard {
+  image: string;
+  title: string;
+  date: string;
+  select: string;
+  radio: string;
+  approve: string;
 }
+interface IValueContext {
+  card: ICard[];
+  setCard: React.Dispatch<React.SetStateAction<ICard[]>>;
+}
+
+const FormProvider = React.createContext<IValueContext>({} as IValueContext);
+
+export const useFormContext = () => useContext(FormProvider);
+
+const FormPage = () => {
+  const [card, setCard] = useState<ICard[]>([]);
+
+  return (
+    <div className={'form-page-container'}>
+      <FormProvider.Provider value={{ card, setCard }}>
+        <Form />
+        <ListCustomCards />
+      </FormProvider.Provider>
+    </div>
+  );
+};
 
 export default FormPage;

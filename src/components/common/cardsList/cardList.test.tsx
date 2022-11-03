@@ -10,10 +10,10 @@ describe('test list cards', () => {
   };
 
   test('render list cards', async () => {
-    const res = await FetchApi.getCards();
+    const res = await fetchItemImage();
     const results = [];
 
-    render(<CardsList stateModal={testFn} items={res} isModal={false} />);
+    render(<CardsList stateModal={testFn} items={res} />);
     res.forEach((user) => {
       const card = screen.getByTestId(user.id);
       results.push(card);

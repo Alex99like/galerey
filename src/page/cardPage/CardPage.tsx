@@ -18,7 +18,7 @@ const CardPage = () => {
   const { idPage } = useParams();
   const navigate = useNavigate();
   const card = pageCards.find((el) => el.id === idPage);
-  if (!card) navigate('/home');
+  if (!card) navigate('/home/1');
 
   const handleBack = () => navigate(-1);
 

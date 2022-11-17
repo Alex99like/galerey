@@ -10,6 +10,7 @@ describe('test card', () => {
     select: '#fff',
     radio: 'favorites',
     approve: 'on',
+    id: 'dasdawd',
   };
 
   test('render custom card', async () => {

@@ -50,6 +50,7 @@ const Pagination = () => {
           </button>
         </>
       ) : null}
+      <h1>{totalPage}</h1>
     </div>
   );
 };

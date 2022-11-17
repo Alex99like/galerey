@@ -1,6 +1,7 @@
+import { validateMessage } from 'components/utils/validateMessag';
 import React, { FC } from 'react';
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
-import { IForm, validateMessage } from '../Form';
+import { IForm } from '../Form';
 
 interface IFormDate {
   register?: UseFormRegister<IForm>;
@@ -16,9 +17,7 @@ const FormDate: FC<IFormDate> = ({ register, errors, children }) => {
           <legend className={errors.date ? 'error' : ''}>
             {errors.date ? errors.date.message : 'Data Create Photo'}
           </legend>
-          {children ? (
-            children
-          ) : (
+          {children || (
             <input
               {...register!('date', {
                 required: validateMessage.required,

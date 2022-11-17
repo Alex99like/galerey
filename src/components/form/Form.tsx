@@ -10,17 +10,7 @@ import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
 import ModalSuccessForm from 'components/common/modalSuccessForm/ModalSuccess';
 import { useSelectorReduce } from 'context/ReducerProvider';
 import { ActionType } from 'context/Reduce.type';
-
-export const validateMessage = {
-  image: 'invalid file format images are allowed (jpg, jpeg, svg)',
-  title: 'the name can only contain Latin letters and numbers from 3 to 12 characters',
-  date: 'The date cannot be higher than the current one',
-  select: 'Choose Color',
-  radio: 'Choose who sees your Photo',
-  approve: 'Read the terms of use of the service',
-  required: 'Required to fill in the field',
-};
-
+import { validateMessage } from 'components/utils/validateMessag';
 export interface IForm {
   image: Blob;
   title: string;
@@ -78,7 +68,7 @@ const Form = () => {
     if (errorsData && Object.keys(errorsData).length > 0) {
       setDisabled(true);
     } else {
-      const card = { ...data, image: photo };
+      const card = { ...data, image: photo, id: Date.now().toString() };
       dispatch &&
         dispatch({
           type: ActionType.SET_CUSTOM_CARD,

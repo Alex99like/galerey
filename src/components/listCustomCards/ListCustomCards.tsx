@@ -11,8 +11,8 @@ const ListCustomCards = () => {
       <fieldset>
         <legend>Board your Card</legend>
         <div>
-          {customCard.map((el, keyIndex) => (
-            <CustomCard key={keyIndex} card={el} />
+          {customCard.map((el) => (
+            <CustomCard key={el.title} card={el} />
           ))}
         </div>
       </fieldset>

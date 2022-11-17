@@ -20,6 +20,7 @@ export interface ICard {
   select: string;
   radio: string;
   approve: string;
+  id: string;
 }
 interface IValueContext {
   card: ICard[];

@@ -18,7 +18,7 @@ const CardPage = () => {
   const { idPage } = useParams();
   const navigate = useNavigate();
   const card = pageCards.find((el) => el.id === idPage);
-  if (!card) navigate(-1);
+  if (!card) navigate('/home');
 
   const handleBack = () => navigate(-1);
 
@@ -46,24 +46,26 @@ const CardPage = () => {
                     href={`https://www.instagram.com/${card.cover_photo.user.instagram_username}/`}
                     rel="noreferrer"
                   >
-                    <img src={Instagram} />{' '}
+                    <img src={Instagram} />
                     {card.cover_photo.user.instagram_username
                       ? card.cover_photo.user.instagram_username.slice(0, 12)
                       : 'No Account'}
                   </a>
                 </div>
-                <div className={'twitter'}>
-                  <a
-                    target={'_blank'}
-                    href={`http://twitter.com/#!/${card.user.social.twitter_username}/`}
-                    rel="noreferrer"
-                  >
-                    <img src={Twitter} />{' '}
-                    {card.user.social.twitter_username
-                      ? card.user.social.twitter_username.slice(0, 12)
-                      : 'No Account'}
-                  </a>
-                </div>
+                {card.user.social.twitter_username && (
+                  <div className={'twitter'}>
+                    <a
+                      target={'_blank'}
+                      href={`http://twitter.com/#!/${card.user.social.twitter_username}/`}
+                      rel="noreferrer"
+                    >
+                      <img src={Twitter} />
+                      {card.user.social.twitter_username
+                        ? card.user.social.twitter_username.slice(0, 12)
+                        : 'No Account'}
+                    </a>
+                  </div>
+                )}
                 <div className={'portfolio'}>
                   <a
                     target={'_blank'}

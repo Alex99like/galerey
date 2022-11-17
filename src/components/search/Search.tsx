@@ -1,4 +1,4 @@
-import { actionSetSort } from 'context/ReduceAction';
+import { actionSetQuantity, actionSetSort } from 'context/ReduceAction';
 import { useSelectorReduce } from 'context/ReducerProvider';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 import React, { FC, useEffect, useRef, useState } from 'react';
@@ -11,7 +11,7 @@ interface IPropsSearch {
 
 const Search: FC<IPropsSearch> = ({ searchMethod }) => {
   const input = useRef<HTMLInputElement>(null);
-  const { dispatch, sort, search: stateSearch } = useSelectorReduce();
+  const { dispatch, sort, search: stateSearch, pageCards, quantity } = useSelectorReduce();
   const [search, setSearch] = useLocalStorage('input-v21', '');
   const [active, setActive] = useState<boolean>(false);
 
@@ -21,7 +21,7 @@ const Search: FC<IPropsSearch> = ({ searchMethod }) => {
 
   useEffect(() => {
     input.current?.focus();
-  });
+  }, [pageCards]);
 
   const submitMethod = () => {
     searchMethod(search);
@@ -47,15 +47,29 @@ const Search: FC<IPropsSearch> = ({ searchMethod }) => {
     dispatch && dispatch(actionSetSort(e.target.value));
   };
 
+  const handleQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch && dispatch(actionSetQuantity(+e.target.value));
+  };
+
   return (
     <div className={'search-container'}>
       <select
-        defaultValue={sort === 'latest' ? 'latest' : 'oldest'}
+        defaultValue={sort == 'latest' ? 'latest' : sort === 'popular' ? 'popular' : 'oldest'}
         onChange={handleSubmit}
         className={'sort-by'}
       >
         <option value={'latest'}>LATEST</option>
         <option value={'oldest'}>OLDEST</option>
+        <option value={'popular'}>POPULAR</option>
+      </select>
+      <select
+        defaultValue={quantity == 5 ? '5' : quantity == 7 ? '7' : '10'}
+        onChange={handleQuantity}
+        className={'quantity'}
+      >
+        <option value={'5'}>5</option>
+        <option value={'7'}>7</option>
+        <option value={'10'}>10</option>
       </select>
       <input
         ref={input}

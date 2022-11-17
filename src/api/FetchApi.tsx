@@ -7,9 +7,9 @@ interface IResponseApi {
 }
 
 class FetchApi {
-  static async getCards(page = 1, search = 'new-york', sort = 'latest') {
+  static async getCards(page = 1, search = 'new-york', quantity = 5) {
     const response = await fetch(
-      `https://api.unsplash.com/search/collections?page=${page}?order_by=${sort}&query=${search}`,
+      `https://api.unsplash.com/search/collections?page=${page}?&query=${search}&per_page=${quantity}`,
       {
         method: 'GET',
         headers: {

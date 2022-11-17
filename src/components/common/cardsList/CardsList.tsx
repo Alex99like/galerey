@@ -5,6 +5,8 @@ import { IImageItem } from 'types/IImageItem';
 import Card from '../card/Card';
 import './cardList.scss';
 
+const heightDivider = 23;
+
 interface IPropsCards {
   items: IImageItem[];
   stateModal?: (state: boolean, id: string) => void;
@@ -15,7 +17,7 @@ const CardsList: FC<IPropsCards> = ({ items, stateModal }) => {
 
   const resizeObserver = useCallback(() => {
     const heightRes = items.reduce((acc, card) => (acc += card.cover_photo.height), 0);
-    setHeight(+((heightRes / 23) * calcWidth(window.innerWidth)).toFixed(0) + 100);
+    setHeight(+((heightRes / heightDivider) * calcWidth(window.innerWidth)).toFixed(0) + 100);
   }, [items]);
 
   useEffect(() => {

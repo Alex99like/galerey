@@ -1,6 +1,7 @@
+import { validateMessage } from 'components/utils/validateMessag';
 import React, { FC } from 'react';
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
-import { IForm, validateMessage } from '../Form';
+import { IForm } from '../Form';
 interface IFormApprove {
   errors: Partial<FieldErrorsImpl<IForm>>;
   register?: UseFormRegister<IForm>;
@@ -13,9 +14,7 @@ const FormApprove: FC<IFormApprove> = ({ errors, register, children }) => {
       <legend className={errors.approve ? 'error' : ''}>
         {errors.approve ? validateMessage.approve : 'Your Approved'}
       </legend>
-      {children ? (
-        children
-      ) : (
+      {children || (
         <>
           <div className={'alerts'}>
             <input id={'alerts'} value={'alerts'} type={'checkbox'} />

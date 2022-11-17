@@ -1,7 +1,8 @@
 import { colorOption } from 'components/utils/colorOptions';
+import { validateMessage } from 'components/utils/validateMessag';
 import React, { FC } from 'react';
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
-import { IForm, validateMessage } from '../Form';
+import { IForm } from '../Form';
 
 interface IFormSelect {
   register?: UseFormRegister<IForm>;
@@ -15,11 +16,9 @@ const FormSelect: FC<IFormSelect> = ({ register, errors, children }) => {
       <label>
         <fieldset>
           <legend className={errors.select ? 'error' : ''}>
-            {errors.select ? errors.select.message : 'Color Card'}
+            {errors.select?.message || 'Color Card'}
           </legend>
-          {children ? (
-            children
-          ) : (
+          {children || (
             <select
               {...register!('select', {
                 required: validateMessage.select,

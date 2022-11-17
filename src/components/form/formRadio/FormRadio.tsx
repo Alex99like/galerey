@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import People from '../../../assets/teamwork.png';
 import Friends from '../../../assets/friends.png';
 import Favorites from '../../../assets/star.png';
-import { IForm, validateMessage } from '../Form';
+import { IForm } from '../Form';
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
+import { validateMessage } from 'components/utils/validateMessag';
 interface IFormRadio {
   errors: Partial<FieldErrorsImpl<IForm>>;
   register?: UseFormRegister<IForm>;
@@ -15,9 +16,7 @@ const FormRadio: FC<IFormRadio> = ({ register, errors, children }) => {
       <legend className={errors.radio ? 'error' : ''}>
         {errors.radio ? validateMessage.radio : 'Who sees your Photo?'}
       </legend>
-      {children ? (
-        children
-      ) : (
+      {children || (
         <>
           <div className={'container'}>
             <input

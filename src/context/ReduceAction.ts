@@ -23,6 +23,11 @@ export const actionSetSort = (sort: string) => ({
   payload: { sort: sort as ISort },
 });
 
+export const actionSetQuantity = (quantity: number) => ({
+  type: ActionType.QUANTITY,
+  payload: { quantity: quantity },
+});
+
 export const actionSetSearch = (search: string) => ({
   type: ActionType.SET_SEARCH,
   payload: { search: search },

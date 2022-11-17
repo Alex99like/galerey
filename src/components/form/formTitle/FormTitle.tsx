@@ -1,19 +1,8 @@
+import { validateMessage } from 'components/utils/validateMessag';
 import React, { FC } from 'react';
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
-import { IForm, validateMessage } from '../Form';
+import { IForm } from '../Form';
 
-// interface IPropsTitle {
-//   input: React.RefObject<HTMLInputElement>;
-//   validate: boolean;
-// }
-
-// type FormValues = {
-//   title: string;
-// };
-
-// interface IStateTitle {
-//   error: boolean;
-// }
 interface IFormTitle {
   register?: UseFormRegister<IForm>;
   errors: Partial<FieldErrorsImpl<IForm>>;
@@ -28,9 +17,7 @@ const FormTitle: FC<IFormTitle> = ({ children, errors, register }) => {
           <legend className={errors.title ? 'error' : ''}>
             {errors.title ? errors.title.message : 'Title Photo'}
           </legend>
-          {children ? (
-            children
-          ) : (
+          {children || (
             <input
               {...register!('title', {
                 required: validateMessage.required,

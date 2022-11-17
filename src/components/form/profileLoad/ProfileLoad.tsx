@@ -1,21 +1,10 @@
-import React, { FC, LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react';
-import { render } from 'react-dom';
-import { FieldErrorsImpl, UseFormGetValues, UseFormRegister } from 'react-hook-form';
+import { validateMessage } from 'components/utils/validateMessag';
+import React, { FC, useState } from 'react';
+import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
 import Photo from '../../../assets/photo.jpg';
-import { IForm, validateMessage } from '../Form';
+import { IForm } from '../Form';
 
-interface IStateForm {
-  dropClass: boolean;
-  image: string;
-}
-
-interface IPropsProfile {
-  input: React.RefObject<HTMLInputElement>;
-  validate: boolean;
-  image: React.RefObject<HTMLImageElement>;
-}
-
-interface IFormProfile {
+interface IFormProfileProps {
   errors: Partial<FieldErrorsImpl<IForm>>;
   register: UseFormRegister<IForm>;
   validate: (e: React.ChangeEvent<HTMLInputElement>) => boolean;
@@ -23,7 +12,7 @@ interface IFormProfile {
   setPhoto: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ProfileLoad: FC<IFormProfile> = ({ errors, register, validate, photo, setPhoto }) => {
+const ProfileLoad: FC<IFormProfileProps> = ({ errors, register, validate, photo, setPhoto }) => {
   const [dropClass, setDropClass] = useState(false);
 
   const onChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {

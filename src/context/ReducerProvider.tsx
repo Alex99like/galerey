@@ -6,6 +6,7 @@ import { ActionReduce, ActionType, IAppContext } from './Reduce.type';
 const initialState: IAppContext = {
   page: 1,
   totalPage: null,
+  quantity: 10,
   pageCards: [],
   customCard: [],
   dispatch: null,
@@ -47,6 +48,12 @@ const AppReducer: Reducer<IAppContext, ActionReduce> = (state, action): IAppCont
         customCard: action.payload.customCard ?? [],
       };
     }
+    case ActionType.QUANTITY: {
+      return {
+        ...state,
+        quantity: action.payload.quantity ?? 10,
+      };
+    }
     case ActionType.RESET: {
       return {
         ...state,
@@ -61,14 +68,15 @@ const AppReducer: Reducer<IAppContext, ActionReduce> = (state, action): IAppCont
 export const AppContext = createContext<IAppContext>(initialState);
 
 export const AppContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [{ page, pageCards, totalPage, search, sort, customCard }, dispatch] = useReducer(
+  const [{ page, pageCards, totalPage, search, sort, customCard, quantity }, dispatch] = useReducer(
     AppReducer,
     initialState
   );
-  const [loading] = useRequestReducer(dispatch, search, page, sort);
+
+  const [loading] = useRequestReducer(dispatch, search, page, sort, quantity);
   return (
     <AppContext.Provider
-      value={{ page, totalPage, pageCards, dispatch, search, sort, loading, customCard }}
+      value={{ page, totalPage, pageCards, dispatch, search, sort, loading, customCard, quantity }}
     >
       {children}
     </AppContext.Provider>

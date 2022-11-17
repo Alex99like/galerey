@@ -7,20 +7,20 @@ import React, { useCallback, useEffect, useState } from 'react';
 export const useRequestReducer = (
   dispatch: React.Dispatch<ActionReduce>,
   search = 'new-york',
-  page = 1,
-  sort = 'latest'
+  page: number,
+  sort = 'latest',
+  quantity = 10
 ) => {
   const [loading, setLoading] = useState(false);
   const fetchCard = useCallback(async () => {
     setLoading(true);
-    const response = await FetchApi.getCards(page, search || 'new-york');
+    const response = await FetchApi.getCards(page, search || 'new-york', quantity);
     const res = sortOrder(response.results, sort);
-    console.log(res.map((el) => el.cover_photo.created_at));
     setLoading(false);
-    dispatch(actionGetCards({ pageCards: res, totalPage: response.total_pages, page: page }));
-
+    page &&
+      dispatch(actionGetCards({ pageCards: res, totalPage: response.total_pages, page: page }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, page, search, sort]);
+  }, [dispatch, page, search, sort, quantity]);
 
   useEffect(() => {
     fetchCard();

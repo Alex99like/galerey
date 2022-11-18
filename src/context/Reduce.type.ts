@@ -2,7 +2,7 @@ import { ICard } from 'page/formPage/FormPage';
 import { IImageItem } from 'types/IImageItem';
 
 export interface IAppContext {
-  page: number;
+  page: number | null;
   quantity: number;
   totalPage: number | null;
   pageCards: IImageItem[];

@@ -7,12 +7,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 export const useRequestReducer = (
   dispatch: React.Dispatch<ActionReduce>,
   search = 'new-york',
-  page: number,
+  page: number | null,
   sort = 'latest',
   quantity = 10
 ) => {
   const [loading, setLoading] = useState(false);
   const fetchCard = useCallback(async () => {
+    if (!page) return;
     setLoading(true);
     const response = await FetchApi.getCards(page, search || 'new-york', quantity);
     const res = sortOrder(response.results, sort);

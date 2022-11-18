@@ -4,7 +4,7 @@ import { createContext, PropsWithChildren } from 'react';
 import { ActionReduce, ActionType, IAppContext } from './Reduce.type';
 
 const initialState: IAppContext = {
-  page: 1,
+  page: null,
   totalPage: null,
   quantity: 10,
   pageCards: [],

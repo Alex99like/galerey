@@ -11,7 +11,7 @@ const Navbar: FC<IPropsRoutes> = () => {
     <nav>
       <NavLink to={'form'}>Form</NavLink>
       <NavLink to={'about'}>About</NavLink>
-      <NavLink to={`/home/${page}` || `/home/1`}>Home</NavLink>
+      <NavLink to={`/home/${page === null ? 1 : page}` || `/home/1`}>Home</NavLink>
       {/* {routes.slice(1).map((route) => (
         <NavLink
           key={route.name}

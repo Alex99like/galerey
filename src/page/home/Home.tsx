@@ -5,8 +5,8 @@ import Loader from 'components/common/loader/Loader';
 import Search from 'components/search/Search';
 import CardsList from 'components/common/cardsList/CardsList';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelectorReduce } from 'context/ReducerProvider';
-import { actionReset, actionSetPage, actionSetSearch } from 'context/ReduceAction';
+import { useAppDispatch, useAppSelector } from 'store';
+import { fetchCards, setSearchQuery } from 'store/reducer/cardSlice';
 export interface IStateHome {
   inputSearch: '';
   items: IImageItem[];
@@ -17,30 +17,37 @@ export interface IStateHome {
   };
 }
 const Home = () => {
-  const { search, pageCards, dispatch, loading } = useSelectorReduce();
+  const { cards, isLoading, searchQuery, sort, quantity } = useAppSelector((state) => state.cards);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { page } = useParams();
 
   useEffect(() => {
-    if (dispatch && page) dispatch(actionSetPage(+page));
+    !!page &&
+      dispatch(
+        fetchCards({
+          page: page,
+          search: searchQuery || 'new york',
+          quantity: `${quantity}`,
+        })
+      );
     return () => {
-      localStorage.setItem('request-v-1', search);
+      localStorage.setItem('request-v-1', searchQuery);
     };
-  }, [dispatch, page, search]);
+  }, [dispatch, page, searchQuery, sort, quantity]);
 
   const searchMethod = (str: string) => {
-    if (dispatch && search !== str) {
+    if (searchQuery !== str) {
       navigate('/home/1');
-      dispatch(actionReset());
-      dispatch(actionSetSearch(str));
+      dispatch(setSearchQuery(str));
     }
   };
 
   return (
     <>
-      <Search searchMethod={searchMethod} prevRequest={search} />
-      {loading ? <Loader /> : <CardsList items={pageCards} />}
+      <Search searchMethod={searchMethod} prevRequest={'search'} />
+      {isLoading ? <Loader /> : <CardsList items={cards} />}
     </>
   );
 };

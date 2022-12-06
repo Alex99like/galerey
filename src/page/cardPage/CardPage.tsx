@@ -1,4 +1,3 @@
-import { useSelectorReduce } from 'context/ReducerProvider';
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -11,16 +10,17 @@ import { randomColor } from 'components/utils/randomColor';
 import Photos from '../../assets/photoDesc.png';
 import Collections from '../../assets/collection.png';
 import Likes from '../../assets/myLikes.png';
+import { useAppSelector } from 'store';
 
 const CardPage = () => {
-  const { pageCards } = useSelectorReduce();
+  const { cards } = useAppSelector((state) => state.cards);
 
   const { idPage } = useParams();
   const navigate = useNavigate();
-  const card = pageCards.find((el) => el.id === idPage);
+  const card = cards.find((el) => el.id === idPage);
 
   useEffect(() => {
-    if (!card) navigate('/home/1');
+    if (!card) navigate(-1);
   }, []);
 
   const handleBack = () => navigate(-1);
@@ -55,20 +55,18 @@ const CardPage = () => {
                       : 'No Account'}
                   </a>
                 </div>
-                {card.user.social.twitter_username && (
-                  <div className={'twitter'}>
-                    <a
-                      target={'_blank'}
-                      href={`http://twitter.com/#!/${card.user.social.twitter_username}/`}
-                      rel="noreferrer"
-                    >
-                      <img src={Twitter} />
-                      {card.user.social.twitter_username
-                        ? card.user.social.twitter_username.slice(0, 12)
-                        : 'No Account'}
-                    </a>
-                  </div>
-                )}
+                <div className={'twitter'}>
+                  <a
+                    target={'_blank'}
+                    href={`http://twitter.com/#!/${card.user.social.twitter_username}/`}
+                    rel="noreferrer"
+                  >
+                    <img src={Twitter} />
+                    {card.user.social.twitter_username
+                      ? card.user.social.twitter_username.slice(0, 12)
+                      : 'No Account'}
+                  </a>
+                </div>
                 <div className={'portfolio'}>
                   <a
                     target={'_blank'}

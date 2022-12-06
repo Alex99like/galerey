@@ -1,17 +1,17 @@
 import CustomCard from 'components/common/customCard/CustomCard';
-import { useSelectorReduce } from 'context/ReducerProvider';
 import React from 'react';
+import { useAppSelector } from 'store';
 import './listCustomCards.scss';
 
 const ListCustomCards = () => {
-  const { customCard } = useSelectorReduce();
+  const { customCards } = useAppSelector((state) => state.form);
 
   return (
     <div className={'custom-board-cards'}>
       <fieldset>
         <legend>Board your Card</legend>
         <div>
-          {customCard.map((el) => (
+          {customCards.map((el) => (
             <CustomCard key={el.title} card={el} />
           ))}
         </div>

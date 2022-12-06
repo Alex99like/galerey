@@ -1,12 +1,13 @@
 import { calcPages } from 'components/utils/calcPages';
-import { actionReset, actionSetPage } from 'context/ReduceAction';
-import { useSelectorReduce } from 'context/ReducerProvider';
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'store';
+import { setPage } from 'store/reducer/cardSlice';
 import './pagination.scss';
 
 const Pagination = () => {
-  const { totalPage, dispatch, page: countPage } = useSelectorReduce();
+  const { totalPage, page: countPage } = useAppSelector((state) => state.cards);
+  const dispatch = useAppDispatch();
 
   const { page } = useParams();
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Pagination = () => {
   const [count, setCount] = useState<number[]>([]);
 
   useEffect(() => {
-    if (dispatch && page) dispatch(actionSetPage(+page));
+    dispatch(setPage(+page!));
     const [first, last] = calcPages(totalPage ?? 5, countPage ?? 1);
 
     const pages = Array(totalPage)
@@ -27,11 +28,11 @@ const Pagination = () => {
   const handleNext = () => navigate('/home/1');
   const handlePrev = () => navigate(`/home/${totalPage && totalPage}`);
 
-  const handleLink = () => {
-    if (page && +page !== countPage) {
-      dispatch && dispatch(actionReset());
-    }
-  };
+  // const handleLink = () => {
+  //   if (page && +page !== countPage) {
+  //     dispatch && dispatch(actionReset());
+  //   }
+  // };
 
   return (
     <div className={'container-pagination'}>
@@ -41,7 +42,7 @@ const Pagination = () => {
             {'<<'}
           </button>
           {count.map((el) => (
-            <NavLink onClick={handleLink} key={el} to={`/home/${el}`}>
+            <NavLink key={el} to={`/home/${el}`}>
               {el}
             </NavLink>
           ))}

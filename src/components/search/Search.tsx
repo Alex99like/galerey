@@ -1,7 +1,7 @@
-import { actionSetQuantity, actionSetSort } from 'context/ReduceAction';
-import { useSelectorReduce } from 'context/ReducerProvider';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 import React, { FC, useEffect, useRef, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'store';
+import { setQuantity, setSort } from 'store/reducer/cardSlice';
 import './search.scss';
 
 interface IPropsSearch {
@@ -11,7 +11,8 @@ interface IPropsSearch {
 
 const Search: FC<IPropsSearch> = ({ searchMethod }) => {
   const input = useRef<HTMLInputElement>(null);
-  const { dispatch, sort, search: stateSearch, pageCards, quantity } = useSelectorReduce();
+  const { sort, searchQuery, cards, quantity } = useAppSelector((state) => state.cards);
+  const dispatch = useAppDispatch();
   const [search, setSearch] = useLocalStorage('input-v21', '');
   const [active, setActive] = useState<boolean>(false);
 
@@ -21,7 +22,7 @@ const Search: FC<IPropsSearch> = ({ searchMethod }) => {
 
   useEffect(() => {
     input.current?.focus();
-  }, [pageCards]);
+  }, [cards]);
 
   const submitMethod = () => {
     searchMethod(search);
@@ -43,12 +44,12 @@ const Search: FC<IPropsSearch> = ({ searchMethod }) => {
     }
   };
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch && dispatch(actionSetSort(e.target.value));
+  const handleQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setQuantity(+e.target.value));
   };
 
-  const handleQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch && dispatch(actionSetQuantity(+e.target.value));
+  const handleSubmit = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setSort(e.target.value));
   };
 
   return (
@@ -78,7 +79,7 @@ const Search: FC<IPropsSearch> = ({ searchMethod }) => {
         onChange={inputMethod}
         value={search}
         type={'search'}
-        placeholder={`${!!stateSearch ? `${stateSearch}...` : 'Enter your Title Photo...'}`}
+        placeholder={`${!!searchQuery ? `${searchQuery}...` : 'Enter your Title Photo...'}`}
       />
       <button
         className={active ? 'active' : ''}

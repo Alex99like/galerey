@@ -2,14 +2,13 @@ import { ICard } from 'page/formPage/FormPage';
 import { IImageItem } from 'types/IImageItem';
 
 export interface IAppContext {
-  page: number | null;
-  quantity: number;
+  page: number;
   totalPage: number | null;
   pageCards: IImageItem[];
   dispatch: React.Dispatch<ActionReduce> | null;
   search: string;
   customCard: ICard[];
-  sort: 'latest' | 'oldest' | 'popular';
+  sort: 'latest' | 'oldest';
   loading: boolean;
 }
 

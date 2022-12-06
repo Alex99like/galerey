@@ -8,9 +8,9 @@ import FormTitle from './formTitle/FormTitle';
 import ProfileLoad from './profileLoad/ProfileLoad';
 import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
 import ModalSuccessForm from 'components/common/modalSuccessForm/ModalSuccess';
-import { useSelectorReduce } from 'context/ReducerProvider';
-import { ActionType } from 'context/Reduce.type';
 import { validateMessage } from 'components/utils/validateMessag';
+import { useAppDispatch } from 'store';
+import { createCard } from 'store/reducer/formSlice';
 export interface IForm {
   image: Blob;
   title: string;
@@ -34,7 +34,7 @@ const Form = () => {
   const [photo, setPhoto] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { dispatch, customCard } = useSelectorReduce();
+  const dispatch = useAppDispatch();
 
   const storageError = () => {
     if (Object.keys(errors).length === 0) {
@@ -64,16 +64,12 @@ const Form = () => {
     }, 2000);
   };
 
-  const onSubmit: SubmitHandler<IForm> = (data) => {
+  const onSubmit: SubmitHandler<IForm> = (data: IForm) => {
     if (errorsData && Object.keys(errorsData).length > 0) {
       setDisabled(true);
     } else {
       const card = { ...data, image: photo, id: Date.now().toString() };
-      dispatch &&
-        dispatch({
-          type: ActionType.SET_CUSTOM_CARD,
-          payload: { customCard: [...customCard, card] },
-        });
+      dispatch(createCard(card));
       successSaveCard();
       handleReset();
     }
